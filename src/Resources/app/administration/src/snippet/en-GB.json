@@ -1,0 +1,14 @@
+{
+    "sw-flow": {
+        "actions": {
+            "labelDropdaySendOrder": "Send order to Dropday",
+            "descriptionDropdaySendOrder": "Submits the order to Dropday for drop-shipping fulfilment."
+        },
+        "modals": {
+            "dropdaySendOrder": {
+                "title": "Send order to Dropday",
+                "description": "This order will be submitted to Dropday for drop-shipping fulfilment when this flow runs. No further configuration is required."
+            }
+        }
+    }
+}

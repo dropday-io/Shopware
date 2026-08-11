@@ -1,0 +1,38 @@
+{% block sw_flow_dropday_send_order_modal %}
+<sw-modal
+    class="sw-flow-dropday-send-order-modal"
+    :title="$tc('sw-flow.modals.dropdaySendOrder.title')"
+    :closable="false"
+    @modal-close="onClose"
+>
+    {% block sw_flow_dropday_send_order_modal_description %}
+    <p>{{ $tc('sw-flow.modals.dropdaySendOrder.description') }}</p>
+    {% endblock %}
+
+    {% block sw_flow_dropday_send_order_modal_footer %}
+    <template #modal-footer>
+        {% block sw_flow_dropday_send_order_modal_footer_cancel_button %}
+        <mt-button
+            class="sw-flow-dropday-send-order-modal__cancel-button"
+            size="small"
+            variant="secondary"
+            @click="onClose"
+        >
+            {{ $tc('global.default.cancel') }}
+        </mt-button>
+        {% endblock %}
+
+        {% block sw_flow_dropday_send_order_modal_footer_save_button %}
+        <mt-button
+            class="sw-flow-dropday-send-order-modal__save-button"
+            variant="primary"
+            size="small"
+            @click="onAddAction"
+        >
+            {{ sequence.id ? $tc('sw-flow.modals.buttonSaveAction') : $tc('sw-flow.modals.buttonAddAction') }}
+        </mt-button>
+        {% endblock %}
+    </template>
+    {% endblock %}
+</sw-modal>
+{% endblock %}

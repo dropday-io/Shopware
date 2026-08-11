@@ -1,0 +1,23 @@
+{
+  "base": "/bundles/dropdayshopware/administration/",
+  "entryPoints": {
+    "dropday-shopware": {
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/bundles/dropdayshopware/administration/assets/dropday-shopware-BdvPi40t.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

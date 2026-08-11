@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Dropday connection</title>
+        <title lang="de-DE">Dropday-Verbindung</title>
+
+        <input-field type="bool">
+            <name>liveMode</name>
+            <label>Live mode</label>
+            <label lang="de-DE">Livemodus</label>
+            <helpText>When disabled, orders are still sent to Dropday but flagged as test orders and are not routed to a real supplier.</helpText>
+            <helpText lang="de-DE">Ist diese Option deaktiviert, werden Bestellungen weiterhin an Dropday gesendet, jedoch als Testbestellung markiert und nicht an einen echten Lieferanten weitergeleitet.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="text">
+            <name>accountId</name>
+            <label>Account ID</label>
+            <label lang="de-DE">Konto-ID</label>
+            <helpText>Found in your Dropday account settings.</helpText>
+            <helpText lang="de-DE">Zu finden in Ihren Dropday-Kontoeinstellungen.</helpText>
+        </input-field>
+
+        <input-field type="password">
+            <name>apiKey</name>
+            <label>API key</label>
+            <label lang="de-DE">API-Schlüssel</label>
+            <helpText>Found in your Dropday account settings.</helpText>
+            <helpText lang="de-DE">Zu finden in Ihren Dropday-Kontoeinstellungen.</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>baseUrl</name>
+            <label>API base URL</label>
+            <label lang="de-DE">API-Basis-URL</label>
+            <helpText>Only change this if instructed by Dropday support, e.g. to point to a staging environment.</helpText>
+            <helpText lang="de-DE">Nur ändern, wenn Dropday-Support dies anweist, z. B. um auf eine Staging-Umgebung zu verweisen.</helpText>
+            <defaultValue>https://dropday.io/api/v1</defaultValue>
+        </input-field>
+    </card>
+</config>

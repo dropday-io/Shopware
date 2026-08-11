@@ -1,0 +1,14 @@
+{
+    "sw-flow": {
+        "actions": {
+            "labelDropdaySendOrder": "Bestellung an Dropday senden",
+            "descriptionDropdaySendOrder": "Sendet die Bestellung zur Dropshipping-Abwicklung an Dropday."
+        },
+        "modals": {
+            "dropdaySendOrder": {
+                "title": "Bestellung an Dropday senden",
+                "description": "Diese Bestellung wird beim Ausführen dieses Flows zur Dropshipping-Abwicklung an Dropday übermittelt. Es ist keine weitere Konfiguration erforderlich."
+            }
+        }
+    }
+}

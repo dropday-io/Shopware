@@ -1,0 +1,54 @@
+{
+    "name": "dropday-io/shopware",
+    "description": "Dropday plugin for Shopware 6 - order synchronisation with the Dropday drop-shipping automation platform.",
+    "version": "1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "homepage": "https://dropday.io",
+    "keywords": [
+        "shopware",
+        "shopware6",
+        "dropday",
+        "dropshipping"
+    ],
+    "authors": [
+        {
+            "name": "Dropday",
+            "email": "support@dropday.io",
+            "homepage": "https://dropday.io"
+        },
+        {
+            "name": "Goran Grbic",
+            "email": "tpojka@gmail.com",
+            "homepage": "https://www.tpojka.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "shopware/core": "~6.5.0 || ~6.6.0 || ^6.7"
+    },
+    "extra": {
+        "shopware-plugin-class": "Dropday\\Shopware\\DropdayShopware",
+        "label": {
+            "de-DE": "Dropday",
+            "en-GB": "Dropday"
+        },
+        "description": {
+            "de-DE": "Bestellsynchronisation mit der Dropday Dropshipping-Automatisierung",
+            "en-GB": "Order synchronisation with the Dropday drop-shipping automation platform"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://dropday.io",
+            "en-GB": "https://dropday.io"
+        },
+        "supportLink": {
+            "de-DE": "https://dropday.io",
+            "en-GB": "https://dropday.io"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Dropday\\Shopware\\": "src/"
+        }
+    }
+}

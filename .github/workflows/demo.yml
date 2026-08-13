@@ -1,0 +1,48 @@
+name: Demo Shopware
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  demo:
+    name: Spin up demo and install plugin
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Start Shopware demo
+        run: docker compose up -d --wait --wait-timeout 300
+
+      - name: Assert DropdayShopware is installed and active
+        run: |
+          LIST=$(docker compose exec -T shop php bin/console plugin:list)
+          echo "$LIST"
+          ROW=$(echo "$LIST" | grep -i DropdayShopware || true)
+          if [ -z "$ROW" ]; then
+            echo "DropdayShopware not found in plugin:list" >&2
+            exit 1
+          fi
+          echo "Found: $ROW"
+          echo "$ROW" | grep -q 'Yes'
+
+      - name: Assert storefront responds
+        run: curl -fsS -o /dev/null -w "%{http_code}\n" http://localhost:8080/
+
+      - name: Dump diagnostics on failure
+        if: failure()
+        run: |
+          docker compose ps || true
+          docker compose exec -T shop ls -la /var/www/html/custom/plugins/ || true
+          docker compose exec -T shop ls -la /var/www/html/custom/plugins/DropdayShopware/ || true
+          docker compose logs shop || true
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v

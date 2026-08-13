@@ -86,6 +86,50 @@ Failures are logged (Dropday validation errors, transport errors, missing creden
 
 The Laravel package (`dropday-io/laravel`) is a thin, framework-agnostic API client (`createOrder`, `getOrders`, `getOrder`) meant for custom integrations. This plugin's `Dropday\Shopware\Api\DropdayApiClient` mirrors that same interface (plus `getProducts`) using Symfony's HTTP client, but is wired directly into Shopware's Flow Builder so no custom code is required to start sending orders.
 
+## Local demo environment
+
+Spin up a full Shopware 6 demo with this plugin installed and activated using [dockware](https://dockware.io):
+
+```bash
+cp .env.example .env   # optional: set Dropday credentials
+make up
+```
+
+| URL | Credentials |
+|---|---|
+| Storefront: http://localhost:8080 | — |
+| Admin: http://localhost:8080/admin | `admin` / `shopware` |
+| Adminer: http://localhost:8888 | MySQL `root` / `root` (host `127.0.0.1`) |
+
+Useful commands:
+
+```bash
+make logs    # follow container logs
+make down    # stop containers
+make reset   # wipe volumes and start fresh
+```
+
+### Shopware version
+
+Default image tag is `6.6-latest`. Override in `.env` or on the command line:
+
+```bash
+SHOPWARE_VERSION=6.7-latest make up
+```
+
+### Dropday credentials
+
+Optional. If set in `.env`, they are written into the plugin config on container boot:
+
+```bash
+DROPDAY_ACCOUNT_ID=...
+DROPDAY_API_KEY=...
+DROPDAY_BASE_URL=https://dropday.io/api/v1   # optional override
+DROPDAY_LIVE_MODE=false                      # optional override
+```
+
+After boot, wire a Flow Builder flow (see above) so orders are sent to Dropday when they reach the state you want.
+
 ## Development notes
 
 - The Flow Builder administration registration in `src/Resources/app/administration/src/main.js` uses the `flowBuilderService` extension API. Verify the exact call signature against the [Shopware Flow Builder extension docs](https://developer.shopware.com/docs/guides/plugins/plugins/framework/flow/add-flow-action.html) for your target version before shipping to production, since this part of the Administration API has evolved across 6.5/6.6/6.7.

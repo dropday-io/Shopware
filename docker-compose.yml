@@ -1,0 +1,24 @@
+services:
+  shop:
+    image: dockware/shopware:${SHOPWARE_VERSION:-6.6-latest}
+    container_name: dropday-shopware
+    ports:
+      - "${SHOPWARE_PORT:-8080}:80"
+      - "${ADMINER_PORT:-8888}:8888"
+    volumes:
+      - ".:/var/www/html/custom/plugins/DropdayShopware"
+      - "./docker/boot_end.sh:/var/www/boot_end.sh"
+    environment:
+      - XDEBUG_ENABLED=0
+      - DROPDAY_ACCOUNT_ID=${DROPDAY_ACCOUNT_ID:-}
+      - DROPDAY_API_KEY=${DROPDAY_API_KEY:-}
+      - DROPDAY_BASE_URL=${DROPDAY_BASE_URL:-}
+      - DROPDAY_LIVE_MODE=${DROPDAY_LIVE_MODE:-}
+    # Healthy only after boot_end.sh finishes installing the plugin (ready marker).
+    # Apache comes up before boot_end, so a plain HTTP check races the install.
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /tmp/dropday-plugin-ready && curl -fsS http://127.0.0.1/ >/dev/null"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 60s

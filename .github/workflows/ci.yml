@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    name: Validate Plugin
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        shopware-version: ['6.5', '6.6']
+        php-version: ['8.1', '8.2', '8.3']
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, xml, curl, json, zip
+          tools: composer:v2
+      
+      - name: Validate composer.json
+        run: composer validate --strict
+      
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+      
+      - name: Check PHP syntax
+        run: find src -name "*.php" -exec php -l {} \;
+
+  code-style:
+    name: Code Style
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: phpcs, phpstan
+      
+      - name: Run PHP CS Fixer (dry-run)
+        run: |
+          composer global require friendsofphp/php-cs-fixer
+          ~/.composer/vendor/bin/php-cs-fixer fix --dry-run --diff src/ || true
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [validate, code-style]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+      
+      - name: Install dependencies (no dev)
+        run: composer install --prefer-dist --no-dev --no-progress
+      
+      - name: Create release package
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          mkdir -p dist
+          zip -r dist/DropdayIntegration-${VERSION}.zip . \
+            -x "*.git*" \
+            -x "*node_modules*" \
+            -x "*.env*" \
+            -x "docker-compose.yml" \
+            -x "dist/*" \
+            -x "tests/*" \
+            -x ".github/*"
+      
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

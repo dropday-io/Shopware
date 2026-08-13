@@ -1,0 +1,47 @@
+---
+description: Shopware 6 Plugin Development Rules
+globs: ["**/*.php", "**/*.xml", "**/*.twig"]
+---
+
+# Shopware 6 Plugin Development
+
+## Architecture Rules
+
+- Follow Shopware's plugin architecture strictly
+- Use services with dependency injection via `services.xml`
+- Register event subscribers with the `kernel.event_subscriber` tag
+- Use Shopware's SystemConfigService for plugin settings
+
+## PHP Code Style
+
+- Use `declare(strict_types=1)` in all PHP files
+- Follow PSR-12 coding standard
+- Add PHPDoc blocks for all classes and public methods
+- Use type hints for all parameters and return types
+- Namespace pattern: `Dropday\DropdayIntegration\`
+
+## Configuration
+
+- Define all settings in `Resources/config/config.xml`
+- Use `DropdayIntegration.config.` prefix for config keys
+- Support multi-language labels (en-GB, de-DE minimum)
+
+## Event Handling
+
+- Subscribe to state machine events for order sync
+- Use proper event naming: `state_enter.order.state.{state}`
+- Always load orders with required associations before processing
+
+## API Integration
+
+- Use cURL for HTTP requests to Dropday API
+- Always include proper error handling
+- Log API calls when debug mode is enabled
+- Handle rate limits gracefully
+
+## Administration (JavaScript/Vue)
+
+- Follow Shopware admin component patterns
+- Register modules in `src/Resources/app/administration/src/main.js`
+- Use snippet files for translations
+- Extend existing components with `Component.override()`

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>API Configuration</title>
+        <title lang="de-DE">API Konfiguration</title>
+
+        <input-field type="text">
+            <name>apiKey</name>
+            <label>API Key</label>
+            <label lang="de-DE">API-Schlüssel</label>
+            <placeholder>Enter your Dropday API key</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihren Dropday API-Schlüssel ein</placeholder>
+            <helpText>You can find your API key in your Dropday dashboard under Settings > API.</helpText>
+            <helpText lang="de-DE">Sie finden Ihren API-Schlüssel in Ihrem Dropday-Dashboard unter Einstellungen > API.</helpText>
+            <required>true</required>
+        </input-field>
+
+        <input-field type="text">
+            <name>accountId</name>
+            <label>Account ID</label>
+            <label lang="de-DE">Konto-ID</label>
+            <placeholder>Enter your Dropday Account ID</placeholder>
+            <placeholder lang="de-DE">Geben Sie Ihre Dropday Konto-ID ein</placeholder>
+            <helpText>Your Account ID can be found in your Dropday dashboard.</helpText>
+            <helpText lang="de-DE">Ihre Konto-ID finden Sie in Ihrem Dropday-Dashboard.</helpText>
+            <required>true</required>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Order Settings</title>
+        <title lang="de-DE">Bestellungseinstellungen</title>
+
+        <input-field type="bool">
+            <name>enabled</name>
+            <label>Enable Order Sync</label>
+            <label lang="de-DE">Bestellungssynchronisierung aktivieren</label>
+            <helpText>When enabled, orders will automatically be sent to Dropday when they reach the configured status.</helpText>
+            <helpText lang="de-DE">Wenn aktiviert, werden Bestellungen automatisch an Dropday gesendet, wenn sie den konfigurierten Status erreichen.</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>triggerState</name>
+            <label>Trigger Order State</label>
+            <label lang="de-DE">Auslösender Bestellstatus</label>
+            <helpText>Orders will be sent to Dropday when they enter this state.</helpText>
+            <helpText lang="de-DE">Bestellungen werden an Dropday gesendet, wenn sie diesen Status erreichen.</helpText>
+            <defaultValue>paid</defaultValue>
+            <options>
+                <option>
+                    <id>open</id>
+                    <name>Open</name>
+                    <name lang="de-DE">Offen</name>
+                </option>
+                <option>
+                    <id>paid</id>
+                    <name>Paid</name>
+                    <name lang="de-DE">Bezahlt</name>
+                </option>
+                <option>
+                    <id>in_progress</id>
+                    <name>In Progress</name>
+                    <name lang="de-DE">In Bearbeitung</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="text">
+            <name>source</name>
+            <label>Order Source Name</label>
+            <label lang="de-DE">Bestellquellen-Name</label>
+            <placeholder>My Shopware Store</placeholder>
+            <placeholder lang="de-DE">Mein Shopware Shop</placeholder>
+            <helpText>This name will appear in Dropday to identify orders from this store.</helpText>
+            <helpText lang="de-DE">Dieser Name erscheint in Dropday, um Bestellungen aus diesem Shop zu identifizieren.</helpText>
+            <defaultValue>Shopware Store</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>testMode</name>
+            <label>Test Mode</label>
+            <label lang="de-DE">Testmodus</label>
+            <helpText>When enabled, all orders will be marked as test orders in Dropday.</helpText>
+            <helpText lang="de-DE">Wenn aktiviert, werden alle Bestellungen in Dropday als Testbestellungen markiert.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Advanced Settings</title>
+        <title lang="de-DE">Erweiterte Einstellungen</title>
+
+        <input-field type="bool">
+            <name>includeProductImages</name>
+            <label>Include Product Images</label>
+            <label lang="de-DE">Produktbilder einbeziehen</label>
+            <helpText>When enabled, product image URLs will be sent with the order.</helpText>
+            <helpText lang="de-DE">Wenn aktiviert, werden Produktbild-URLs mit der Bestellung gesendet.</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>logApiCalls</name>
+            <label>Enable API Logging</label>
+            <label lang="de-DE">API-Protokollierung aktivieren</label>
+            <helpText>When enabled, all API calls to Dropday will be logged for debugging purposes.</helpText>
+            <helpText lang="de-DE">Wenn aktiviert, werden alle API-Aufrufe an Dropday zu Debugging-Zwecken protokolliert.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+</config>
+

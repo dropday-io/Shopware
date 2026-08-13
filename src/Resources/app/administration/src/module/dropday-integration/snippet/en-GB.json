@@ -1,0 +1,31 @@
+{
+    "dropday-integration": {
+        "general": {
+            "mainMenuItemGeneral": "Dropday Integration",
+            "descriptionTextModule": "Integrate your Shopware store with Dropday.io for automated order fulfillment"
+        },
+        "dashboard": {
+            "title": "Dropday Integration",
+            "welcomeTitle": "Welcome to Dropday",
+            "welcomeText": "Dropday helps you automate your order fulfillment by connecting your Shopware store with your suppliers. Orders are automatically sent to Dropday when they reach the configured status, streamlining your dropshipping workflow.",
+            "configTitle": "Configuration",
+            "connectionTitle": "Connection Status",
+            "testConnection": "Test Connection",
+            "connectionSuccess": "Connected",
+            "connectionSuccessMessage": "Successfully connected to Dropday API.",
+            "connectionError": "Connection Failed",
+            "connectionErrorMessage": "Could not connect to Dropday API. Please check your API credentials.",
+            "openDashboard": "Open Dropday Dashboard",
+            "documentation": "Documentation"
+        },
+        "order": {
+            "syncButton": "Send to Dropday",
+            "syncSuccess": "Order sent to Dropday",
+            "syncSuccessMessage": "The order has been successfully sent to Dropday.",
+            "syncError": "Sync failed",
+            "syncErrorMessage": "Failed to send order to Dropday. Please check the logs for details.",
+            "alreadySynced": "Already sent to Dropday"
+        }
+    }
+}
+

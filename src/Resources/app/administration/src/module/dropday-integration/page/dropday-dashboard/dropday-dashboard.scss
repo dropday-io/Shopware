@@ -1,0 +1,59 @@
+.dropday-dashboard {
+    &__intro {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+    }
+
+    &__intro-logo {
+        flex-shrink: 0;
+    }
+
+    &__logo {
+        width: 120px;
+        height: auto;
+    }
+
+    &__intro-text {
+        flex: 1;
+        
+        p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--color-text-primary-default);
+        }
+    }
+
+    &__connection {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    &__connection-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 4px;
+        background-color: var(--color-background-primary-default);
+
+        &--success {
+            color: #37d046;
+            font-weight: 600;
+        }
+
+        &--error {
+            color: #de294c;
+            font-weight: 600;
+        }
+    }
+
+    &__config-card {
+        .sw-system-config {
+            padding: 0;
+        }
+    }
+}
+

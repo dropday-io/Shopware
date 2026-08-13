@@ -1,0 +1,31 @@
+{
+    "dropday-integration": {
+        "general": {
+            "mainMenuItemGeneral": "Dropday Integration",
+            "descriptionTextModule": "Integrieren Sie Ihren Shopware-Shop mit Dropday.io für automatisierte Auftragsabwicklung"
+        },
+        "dashboard": {
+            "title": "Dropday Integration",
+            "welcomeTitle": "Willkommen bei Dropday",
+            "welcomeText": "Dropday hilft Ihnen bei der Automatisierung Ihrer Auftragsabwicklung, indem es Ihren Shopware-Shop mit Ihren Lieferanten verbindet. Bestellungen werden automatisch an Dropday gesendet, wenn sie den konfigurierten Status erreichen, und optimieren so Ihren Dropshipping-Workflow.",
+            "configTitle": "Konfiguration",
+            "connectionTitle": "Verbindungsstatus",
+            "testConnection": "Verbindung testen",
+            "connectionSuccess": "Verbunden",
+            "connectionSuccessMessage": "Erfolgreich mit der Dropday API verbunden.",
+            "connectionError": "Verbindung fehlgeschlagen",
+            "connectionErrorMessage": "Konnte keine Verbindung zur Dropday API herstellen. Bitte überprüfen Sie Ihre API-Anmeldedaten.",
+            "openDashboard": "Dropday Dashboard öffnen",
+            "documentation": "Dokumentation"
+        },
+        "order": {
+            "syncButton": "An Dropday senden",
+            "syncSuccess": "Bestellung an Dropday gesendet",
+            "syncSuccessMessage": "Die Bestellung wurde erfolgreich an Dropday gesendet.",
+            "syncError": "Synchronisation fehlgeschlagen",
+            "syncErrorMessage": "Bestellung konnte nicht an Dropday gesendet werden. Bitte überprüfen Sie die Logs für Details.",
+            "alreadySynced": "Bereits an Dropday gesendet"
+        }
+    }
+}
+

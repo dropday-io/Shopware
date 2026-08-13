@@ -1,0 +1,48 @@
+services:
+  shopware:
+    image: dockware/dev:${SHOPWARE_VERSION:-6.6.6.0}
+    container_name: dropday-shopware
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8888:8888"
+      - "9998:9998"
+      - "9999:9999"
+    volumes:
+      - "./:/var/www/html/custom/plugins/DropdayIntegration"
+    environment:
+      - XDEBUG_ENABLED=0
+    networks:
+      - dropday-network
+
+  database:
+    image: mysql:8.0
+    container_name: dropday-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: shopware
+      MYSQL_USER: shopware
+      MYSQL_PASSWORD: shopware
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - dropday-network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: dropday-mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - dropday-network
+
+networks:
+  dropday-network:
+    driver: bridge
+
+volumes:
+  db_data:
+

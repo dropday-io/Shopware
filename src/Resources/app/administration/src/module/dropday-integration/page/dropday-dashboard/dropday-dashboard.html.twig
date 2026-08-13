@@ -1,0 +1,94 @@
+{% block dropday_dashboard %}
+<sw-page class="dropday-dashboard">
+    {% block dropday_dashboard_smart_bar_header %}
+    <template #smart-bar-header>
+        <h2>{{ $tc('dropday-integration.dashboard.title') }}</h2>
+    </template>
+    {% endblock %}
+
+    {% block dropday_dashboard_smart_bar_actions %}
+    <template #smart-bar-actions>
+        <sw-button
+            variant="ghost"
+            @click="openDocumentation">
+            {{ $tc('dropday-integration.dashboard.documentation') }}
+        </sw-button>
+        <sw-button
+            variant="primary"
+            @click="openDropdayDashboard">
+            {{ $tc('dropday-integration.dashboard.openDashboard') }}
+        </sw-button>
+    </template>
+    {% endblock %}
+
+    {% block dropday_dashboard_content %}
+    <template #content>
+        <sw-card-view>
+            {% block dropday_dashboard_intro_card %}
+            <sw-card
+                :title="$tc('dropday-integration.dashboard.welcomeTitle')"
+                class="dropday-dashboard__intro-card">
+                <div class="dropday-dashboard__intro">
+                    <div class="dropday-dashboard__intro-logo">
+                        <img
+                            :src="assetFilter('dropday-integration/static/logo.svg')"
+                            alt="Dropday Logo"
+                            class="dropday-dashboard__logo">
+                    </div>
+                    <div class="dropday-dashboard__intro-text">
+                        <p>{{ $tc('dropday-integration.dashboard.welcomeText') }}</p>
+                    </div>
+                </div>
+            </sw-card>
+            {% endblock %}
+
+            {% block dropday_dashboard_connection_card %}
+            <sw-card
+                :title="$tc('dropday-integration.dashboard.connectionTitle')"
+                class="dropday-dashboard__connection-card">
+                <div class="dropday-dashboard__connection">
+                    <div class="dropday-dashboard__connection-status" v-if="connectionStatus">
+                        <sw-icon
+                            v-if="connectionStatus === 'success'"
+                            name="regular-checkmark-circle"
+                            color="#37d046"
+                            size="24">
+                        </sw-icon>
+                        <sw-icon
+                            v-else
+                            name="regular-times-circle"
+                            color="#de294c"
+                            size="24">
+                        </sw-icon>
+                        <span :class="'dropday-dashboard__connection-status--' + connectionStatus">
+                            {{ connectionStatus === 'success'
+                                ? $tc('dropday-integration.dashboard.connectionSuccess')
+                                : $tc('dropday-integration.dashboard.connectionError') }}
+                        </span>
+                    </div>
+                    <sw-button
+                        variant="primary"
+                        :isLoading="isTesting"
+                        @click="testConnection">
+                        {{ $tc('dropday-integration.dashboard.testConnection') }}
+                    </sw-button>
+                </div>
+            </sw-card>
+            {% endblock %}
+
+            {% block dropday_dashboard_config_card %}
+            <sw-card
+                :title="$tc('dropday-integration.dashboard.configTitle')"
+                class="dropday-dashboard__config-card">
+                <sw-system-config
+                    domain="DropdayIntegration.config"
+                    :sales-channel-switchable="true">
+                </sw-system-config>
+            </sw-card>
+            {% endblock %}
+        </sw-card-view>
+    </template>
+    {% endblock %}
+</sw-page>
+{% endblock %}
+

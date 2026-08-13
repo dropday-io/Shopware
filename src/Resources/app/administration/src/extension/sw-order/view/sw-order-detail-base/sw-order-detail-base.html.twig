@@ -1,0 +1,23 @@
+{% block sw_order_detail_base_order_overview %}
+    {% parent %}
+
+    {% block sw_order_detail_base_dropday_sync %}
+    <sw-card
+        :title="'Dropday'"
+        class="sw-order-detail-base__dropday-card">
+        <template #toolbar>
+            <sw-button
+                variant="primary"
+                size="small"
+                :isLoading="dropdaySyncing"
+                @click="syncToDropday">
+                {{ $tc('dropday-integration.order.syncButton') }}
+            </sw-button>
+        </template>
+        <p class="sw-order-detail-base__dropday-info">
+            {{ $tc('dropday-integration.dashboard.welcomeText') }}
+        </p>
+    </sw-card>
+    {% endblock %}
+{% endblock %}
+

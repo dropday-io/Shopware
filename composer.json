@@ -1,0 +1,50 @@
+{
+    "name": "dropday/shopware-integration",
+    "description": "Dropday.io integration for Shopware 6 - Automated order fulfillment",
+    "version": "1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dropday",
+            "email": "support@dropday.io",
+            "homepage": "https://dropday.io"
+        }
+    ],
+    "keywords": [
+        "shopware",
+        "shopware-platform-plugin",
+        "dropday",
+        "fulfillment",
+        "dropshipping",
+        "order-management"
+    ],
+    "require": {
+        "shopware/core": "~6.5.0 || ~6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "Dropday\\DropdayIntegration\\DropdayIntegration",
+        "label": {
+            "de-DE": "Dropday Integration",
+            "en-GB": "Dropday Integration"
+        },
+        "description": {
+            "de-DE": "Integrieren Sie Ihren Shopware-Shop mit Dropday.io für automatisierte Auftragsabwicklung",
+            "en-GB": "Integrate your Shopware store with Dropday.io for automated order fulfillment"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://dropday.io",
+            "en-GB": "https://dropday.io"
+        },
+        "supportLink": {
+            "de-DE": "https://dropday.io/support",
+            "en-GB": "https://dropday.io/support"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Dropday\\DropdayIntegration\\": "src/"
+        }
+    }
+}
+
